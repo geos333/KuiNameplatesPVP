@@ -19,7 +19,7 @@ end
 
 opt.info = {
     name = 'KuiNameplates: PVP',
-    version = '0.0.5',
+    version = '0.0.6',
     author = 'GEOS',
     header = '%s by %s, version %s'
 }
