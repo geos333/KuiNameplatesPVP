@@ -245,8 +245,10 @@ function CreateCheckBox(parent, name)
     check.label:SetText(L.titles[name] or name or '!MissingTitle')
     check.label:SetPoint('LEFT', check, 'RIGHT')
 
-    check.label:HookScript('OnEnter',OnEnter)
-    check.label:HookScript('OnLeave',OnLeave)
+    check.env = name
+    check.label = label
+    check:HookScript('OnEnter',OnEnter)
+    check:HookScript('OnLeave',OnLeave)
 
     check:SetChecked(opt.env[name])
 
