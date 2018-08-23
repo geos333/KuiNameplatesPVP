@@ -3,9 +3,9 @@ if not L then return end
 
 L.titles = {
     iconFaction = 'Show Icon All Faction',
-    iconCombat = 'Show Icon Combat',
     --iconAnchor = 'Icon Anchor',
     iconSize = 'Change Icon Size',
-    iconOwnFaction = 'Hide Icon Own Faction'
+    iconOwnFaction = 'Hide Icon Own Faction',
+    iconNPC = "Show Icon for NPC"
 }
 L.tooltips = {}
