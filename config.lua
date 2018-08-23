@@ -19,13 +19,13 @@ end
 
 opt.info = {
     name = 'KuiNameplates: PVP',
-    version = '0.0.9',
+    version = '0.1.5',
     author = 'GEOS',
     header = '%s by %s, version %s'
 }
 opt.titles = {
     iconFaction = 'Show Icon Faction',
-    iconCombat = 'Show Icon Combat',
+    iconNPC = 'Show Icon for NPC',
     --iconAnchor = 'Icon Anchor',
     iconSize = 'Change Icon Size',
     iconOwnFaction = 'Show Icon Own Faction'
@@ -33,7 +33,7 @@ opt.titles = {
 
 opt.env = {
     iconFaction = true,
-    iconCombat = true,
+    iconNPC = false,
     iconAnchor = "RIGHT",
     iconSize = 24,
     iconOwnFaction = false,

@@ -7,7 +7,7 @@ local frame_name = 'KuiPVPConfig'
 
 -- create ######################################################################
 function mod:Show(f)
-    if (opt.env.iconFaction or opt.env.iconCombat or opt.env.iconOwnFaction)  then
+    if (opt.env.iconFaction or opt.env.iconOwnFaction or opt.env.iconNPC)  then
         f:UpdatePVPIcon(f)
     else
         f.pvpIcon:Hide()
@@ -20,7 +20,7 @@ function mod:Create(f)
 end
 
 local function UpdatePVPIcon(f)
-    if (opt.env.iconFaction) and (opt.env.iconOwnFaction) and (UnitFactionGroup(f.unit)) then
+    if (opt.env.iconFaction) and (opt.env.iconOwnFaction) and (UnitFactionGroup(f.unit)) and (UnitIsPlayer(f.unit)) then
         if (UnitFactionGroup(f.unit) ~= UnitFactionGroup("player")) then
         f.pvpIcon:SetTexture("Interface\\TargetingFrame\\UI-PVP-"..UnitFactionGroup(f.unit));
         f.pvpIcon:SetTexCoord(0,0.62,0,0.62);
@@ -30,28 +30,33 @@ local function UpdatePVPIcon(f)
         else
             f.pvpIcon:Hide()
         end
-    elseif (opt.env.iconFaction) and (UnitIsPVPFreeForAll(f.unit)) then
-        f.pvpIcon:SetTexture("Interface\\TargetingFrame\\UI-PVP-FFA");
-        f.pvpIcon:SetTexCoord(0,0.62,0,0.62);
-        f.pvpIcon:SetWidth(opt.env.iconSize);
-        f.pvpIcon:SetHeight(opt.env.iconSize);
-        f.pvpIcon:Show();
-    elseif (opt.env.iconFaction) and (UnitFactionGroup(f.unit)) then
+    elseif (opt.env.iconFaction) and (opt.env.iconOwnFaction) and (UnitFactionGroup(f.unit)) and (opt.env.iconNPC) then
+         if (UnitFactionGroup(f.unit) ~= UnitFactionGroup("player")) then
         f.pvpIcon:SetTexture("Interface\\TargetingFrame\\UI-PVP-"..UnitFactionGroup(f.unit));
         f.pvpIcon:SetTexCoord(0,0.62,0,0.62);
         f.pvpIcon:SetWidth(opt.env.iconSize);
         f.pvpIcon:SetHeight(opt.env.iconSize);
         f.pvpIcon:Show()
-    elseif (opt.env.iconCombat) and (UnitAffectingCombat(f.unit)) then
-        f.pvpIcon:SetTexture("Interface\\CharacterFrame\\UI-StateIcon");
-        f.pvpIcon:SetTexCoord(0.5,1,0,0.5);
+        else
+            f.pvpIcon:Hide()
+        end
+    elseif (opt.env.iconFaction) and (UnitFactionGroup(f.unit)) and (UnitIsPlayer(f.unit)) then
+        f.pvpIcon:SetTexture("Interface\\TargetingFrame\\UI-PVP-"..UnitFactionGroup(f.unit));
+        f.pvpIcon:SetTexCoord(0,0.62,0,0.62);
         f.pvpIcon:SetWidth(opt.env.iconSize);
         f.pvpIcon:SetHeight(opt.env.iconSize);
-        f.pvpIcon:Show();
+        f.pvpIcon:Show()
+    elseif (opt.env.iconFaction) and (UnitFactionGroup(f.unit)) and (opt.env.iconNPC) then
+        f.pvpIcon:SetTexture("Interface\\TargetingFrame\\UI-PVP-"..UnitFactionGroup(f.unit));
+        f.pvpIcon:SetTexCoord(0,0.62,0,0.62);
+        f.pvpIcon:SetWidth(opt.env.iconSize);
+        f.pvpIcon:SetHeight(opt.env.iconSize);
+        f.pvpIcon:Show()    
     else
         f.pvpIcon:Hide()
     end
 end
+
 
 function mod:CreatePVPIcon(f)
     local pvpIcon = f:CreateTexture(nil,"BACKGROUND");
@@ -82,15 +87,15 @@ function events:ADDON_LOADED(addon_name)
 
         local icon = CreateCheckBox(opt, 'iconFaction')
         icon:SetPoint("TOP", -250, -65)
-        local icon = CreateCheckBox(opt, 'iconCombat')
-        icon:SetPoint("TOP", -250, -85)
         local icon = CreateCheckBox(opt, 'iconOwnFaction')
+        icon:SetPoint("TOP", -250, -105)
+        local icon = CreateCheckBox(opt, 'iconNPC')
         icon:SetPoint("TOP", -250, -125)
         local icon = CreateCheckBox(opt, 'Debugger')
         icon:SetPoint("BOTTOMLEFT", 0, 0)
         local iconSize = CreateSlider(opt, 'iconSize', 24, 72)
         iconSize:SetPoint("TOP", -140, -170)
-
+        
 
     end
 end
