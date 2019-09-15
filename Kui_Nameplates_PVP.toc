@@ -1,8 +1,8 @@
-## Interface: 80000
+## Interface: 80200
 ## Author: GEOS
 ## Title: Kui |cff9966ffNameplates: |cffffffffPVP|r
 ## Notes: Adds 'PVP icon' for KuiNameplates
-## Version: v0.1.5
+## Version: v0.1.6
 ## Dependencies: Kui_Nameplates
 ## Dependencies: Kui_Nameplates_Core
 ## SavedVariables: KuiPVPSaved
