@@ -170,7 +170,7 @@ function CreateSlider(parent, name, min, max)
         label:SetText(L.titles[name] or name or 'Slider')
         label:SetPoint('BOTTOM',slider,'TOP')
 
-        local display = CreateFrame('EditBox',nil,slider)
+        local display = CreateFrame('EditBox',nil,slider, BackdropTemplateMixin and "BackdropTemplate")
         display:SetFontObject('GameFontHighlightSmall')
         display:SetSize(50,15)
         display:SetPoint('TOP',slider,'BOTTOM',0,1)
