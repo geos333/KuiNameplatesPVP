@@ -1,7 +1,18 @@
 local folder,ns = ...
 local opt = CreateFrame('FRAME','KuiPVPConfig',InterfaceOptionsFramePanelContainer)
+opt:Hide()
 opt.name = 'Kui |cff9966ffPVP'
-InterfaceOptions_AddCategory(opt)
+
+opt:SetScript('OnShow',lod_OnShow)
+opt:SetScript('OnEvent',lod_OnEvent)
+
+if InterfaceOptions_AddCategory then
+    InterfaceOptions_AddCategory(opt)
+else
+    local category, _ = Settings.RegisterCanvasLayoutCategory(opt, opt.name)
+    category.ID = opt.name
+    Settings.RegisterAddOnCategory(category)
+end
 
 -- locale ######################################################################
 do
